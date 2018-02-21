@@ -1,6 +1,5 @@
 class GameSerializer < ActiveModel::Serializer
-  attributes :game_id, :scores, :
-
+  attributes :game_id, :scores
 
 
   def game_id
@@ -8,10 +7,13 @@ class GameSerializer < ActiveModel::Serializer
   end
 
   def scores
-    "user_id": get_scores[key.first], 
+    [{"user_id": get_scores.keys.first, "score": get_scores.keys.first.values},
+      {"user_id": get_scores.keys.last, "score": get_scores.keys.first.last}]
   end
 
   def get_scores
     joins(:plays).group("plays.user_id").order("sum_score DESC").sum(:score)
   end
+
+
 end
