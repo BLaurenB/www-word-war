@@ -7,7 +7,7 @@ class Game < ApplicationRecord
   has_many :plays
 
   def get_scores
-    joins(:plays).group("plays.user_id").order("sum_score DESC").sum(:score)
+    
   end
 
 end
