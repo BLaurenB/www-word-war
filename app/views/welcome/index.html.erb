@@ -1,7 +1,9 @@
 <h2>Fill in a word to Play!</h2>
 
-<%= form_for :play do |f| %>
+form_for :article, @article, :url => { :action => "create" }, :html => {:class => "nifty_form"} do |f|
+
+<%= form_for @play, controller: plays, action: create do |f| %>
   <%= f.label :word  %>
   <%= f.text_field :word  %>
-  <%= f.submit "Validate Word"  %>
+  <%= f.submit "Validate Word", game_id: 1, user_id: 1  %>
 <% end   %>
