@@ -4,17 +4,20 @@ class PlaysController < ApplicationController
 
   def create
 
-    submitted_word = params[:word]
+    #
+    # connection = Faraday.new("https://od-api.oxforddictionaries.com") do |f|
+    #   f.adapter Faraday.default_adapter
+    #   f.headers['app_id'] = ENV['OXFORD_ID']
+    #   f.headers['app_key'] = ENV['OXFORD_KEY']
+    # end
+    #
+    # response = connection.get("/api/v1/inflections/en/#{submitted_word}")
+    #
+    # parsed_response = JSON.parse(response.body, symbolize_names: true)[:results].first[:lexicalEntries][1][:inflectionOf][0][:text]
 
-    connection = Faraday.new("https://od-api.oxforddictionaries.com") do |f|
-      f.adapter Faraday.default_adapter
-      f.headers['app_id'] = ENV['OXFORD_ID']
-      f.headers['app_key'] = ENV['OXFORD_KEY']
-    end
+    # submitted_word = params[:word]
 
-    response = connection.get("/api/v1/inflections/en/#{submitted_word}")
-
-    parsed_response = JSON.parse(response.body, symbolize_names: true)[:results].first[:lexicalEntries][1][:inflectionOf][0][:text]
+    parsed_response = OxfordParser.validation(params[:word]).validated_word
 
     if parsed_response != false
       Play.create(game_id: 1, user_id: 1, word: params[:word])
