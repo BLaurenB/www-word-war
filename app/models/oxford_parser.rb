@@ -1,19 +1,21 @@
 class OxfordParser
-attr_reader :word, :validation
+attr_reader :word, :validated_word
 
   def initialize(word, validation)
     @word = word
-    @validated_word = validation[:results].first[:lexicalEntries][1][:inflectionOf][0][:text]
-    if @validated_word != word
-      return false
+    # binding.pry
+    @validated_word = validation
+
+    if @validated_word == "bad input"
+      @validated_word
     else
-      return @validated_word
+      @validated_word = validation[:results].first[:lexicalEntries][1][:inflectionOf][0][:text]
     end
   end
 
 
   def self.validation(word)
-    OxfordParser.new(call_oxford(word).parsed_response)
+    OxfordParser.new(word, call_oxford(word).parsed_response)
   end
 
   def self.call_oxford(word)

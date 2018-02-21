@@ -18,7 +18,13 @@ class OxfordService
 
   def parsed_response
     response = connection.get("/api/v1/inflections/en/#{word}")
-    JSON.parse(response.body, symbolize_names: true)
+
+    if response.body.include?("<!DOCTYPE")
+
+      return "bad input"
+    else
+      return JSON.parse(response.body, symbolize_names: true)
+    end
   end
 
 end
