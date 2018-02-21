@@ -9,7 +9,7 @@ describe "As a user" do
     # As a user
     # When I visit "/"
     # And I fill in a text box with "foxes"
-    fill_in "play_word", with: "foxes"
+    fill_in "word", with: "foxes"
     # And I click "Validate Word"
     click_button "Validate Word"
     # Then I should see a message that says "'foxes' is a valid word and its root form is 'fox'."
