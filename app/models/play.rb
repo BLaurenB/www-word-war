@@ -15,10 +15,19 @@ class Play < ApplicationRecord
   private
 
     def score_word
-      self.score  = word.upcase.split("").map do |letter|
-        letter_scores[letter]
-      end.sum
+      if sanitize == false
+        return 0
+      else
+        self.score  = word.upcase.split("").map do |letter|
+          letter_scores[letter]
+        end.sum
+      end
+    end
 
+
+    def sanitize
+      return false if word.include?(" ")
+      # return false if word.is_not_a_word
     end
 
 end
