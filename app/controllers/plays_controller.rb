@@ -4,19 +4,6 @@ class PlaysController < ApplicationController
 
   def create
 
-    #
-    # connection = Faraday.new("https://od-api.oxforddictionaries.com") do |f|
-    #   f.adapter Faraday.default_adapter
-    #   f.headers['app_id'] = ENV['OXFORD_ID']
-    #   f.headers['app_key'] = ENV['OXFORD_KEY']
-    # end
-    #
-    # response = connection.get("/api/v1/inflections/en/#{submitted_word}")
-    #
-    # parsed_response = JSON.parse(response.body, symbolize_names: true)[:results].first[:lexicalEntries][1][:inflectionOf][0][:text]
-
-    # submitted_word = params[:word]
-
     parsed_response = OxfordParser.validation(params[:word]).validated_word
 
     if parsed_response != "bad input"
