@@ -18,7 +18,7 @@ class Play < ApplicationRecord
       if sanitize == false
         return 0
       else
-        self.score  = word.upcase.split("").map do |letter|
+        self.score  = word.rstrip.lstrip.upcase.split("").map do |letter|
           letter_scores[letter]
         end.sum
       end
@@ -26,8 +26,8 @@ class Play < ApplicationRecord
 
 
     def sanitize
-      return false if word.include?(" ")
-      # return false if word.is_not_a_word
+      word.force_encoding("UTF-8").ascii_only?  #returns t/f. Do a flash from controller if score is 0?
+      # || word is not an Oxford Approved word
     end
 
 end

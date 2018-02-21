@@ -10,7 +10,13 @@ require 'spec_helper'
 require 'capybara/rails'
 
 # Add additional requires below this line. Rails is not loaded until this point!
-
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  config.allow_http_connections_when_no_cassette = true
+  config.hook_into :webmock
+  config.filter_sensitive_data("Oxford_id") {ENV['OXFORD_ID']}
+  config.filter_sensitive_data("Oxford_key") {ENV['OXFORD_KEY']}
+end
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
