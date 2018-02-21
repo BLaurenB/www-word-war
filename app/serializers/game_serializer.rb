@@ -3,7 +3,8 @@ class GameSerializer < ActiveModel::Serializer
 
 
   def game_id
-    id
+    :id
+    binding.pry
   end
 
   def scores
@@ -12,7 +13,7 @@ class GameSerializer < ActiveModel::Serializer
   end
 
   def get_scores
-    joins(:plays).group("plays.user_id").order("sum_score DESC").sum(:score)
+    Game.find(id).scores
   end
 
 
