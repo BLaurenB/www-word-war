@@ -15,7 +15,7 @@ describe "As a user" do
     # Then I should see a message that says "'foxes' is a valid word and its root form is 'fox'."
 # This needs to post to the play#create method
 
-    expect(page).to have_content("'foxes' is a valid word and its root form is 'fox'")
+    expect(page).to have_content("SUCCESS! 'foxes' is a valid word and its root form is 'fox'")
   end
 
   it "I play an invalid word" do
