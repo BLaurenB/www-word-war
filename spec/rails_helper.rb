@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'support/factory_bot'
 require 'spec_helper'
 require 'capybara/rails'
+require 'capybara/rspec'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 VCR.configure do |config|
@@ -63,6 +64,8 @@ RSpec.configure do |config|
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
+
+  config.include Capybara::DSL
 
 
 
