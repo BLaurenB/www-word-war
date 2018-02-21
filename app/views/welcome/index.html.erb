@@ -1,4 +1,7 @@
 <h2>Fill in a word to Play!</h2>
 
-<% form_for :play do |f| %>
-<%=  %>
+<%= form_for :play do |f| %>
+  <%= f.label :word  %>
+  <%= f.text_field :word  %>
+  <%= f.submit "Validate Word"  %>
+<% end   %>
