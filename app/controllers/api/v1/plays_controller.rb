@@ -6,7 +6,7 @@ class Api::V1::PlaysController < ActionController::API
 
   def create
     parsed_response = OxfordParser.validation(params[:word]).validated_word.lexical_entries.inflection_of.text
-    binding.pry
+    # binding.pry
 
     if parsed_response != "bad input"
       Play.create(play_params)

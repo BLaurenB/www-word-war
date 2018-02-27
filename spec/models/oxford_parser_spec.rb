@@ -8,8 +8,8 @@ describe OxfordParser do
 
       it "calls the Service" do
         parser = OxfordParser.validation("foxes")
-        binding.pry
-        expect(parser.validated_word).to eq()
+        # binding.pry
+        expect(parser.validated_word.lexical_entries.inflection_of.text).to eq()
       end
     end
 
