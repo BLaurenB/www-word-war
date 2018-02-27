@@ -13,9 +13,9 @@ describe "As a user" do
 
   it "I play an invalid word" do
     visit "/"
-    fill_in "word", with: "awoinuvtaow"
+    fill_in "word", with: "foxez"
     click_button "Validate Word"
-    expect(page).to have_content("Oh no! That wasn't a valid word!")
+    expect(page).to have_content("FAIL. foxez is not a valid word")
 
   end
 end

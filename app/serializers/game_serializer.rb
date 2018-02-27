@@ -11,7 +11,7 @@ class GameSerializer < ActiveModel::Serializer
   end
 
   def get_scores
-    object.plays.group("plays.user_id").order("sum_score DESC").sum(:score)
+    object.plays.group("plays.user_id").order("user_id").sum(:score)
   end
 
 
